@@ -1,0 +1,27 @@
+{
+  "name": "18-social-network-api",
+  "version": "1.0.0",
+  "description": "mongodb",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eddyK15501/social-network-api.git"
+  },
+  "keywords": [
+    "mongodb"
+  ],
+  "author": "Edward Kim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eddyK15501/social-network-api/issues"
+  },
+  "homepage": "https://github.com/eddyK15501/social-network-api#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.3"
+  }
+}
