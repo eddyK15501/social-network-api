@@ -1,18 +1,16 @@
-// CommonJS import express & mongoose
+// CommonJS import statements
 const express = require('express');
-const mongoose = require('mongoose');
+const db = require('./config/connection');
 
+const PORT = 3001;
 const app = express();
 
 // Middleware for parsing JSON requests/responses
 app.use(express.json());
 
-// Connect to Mongoose; Best practice, hide MongoDB URI in .env for security purposes;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/social-network-api')
-    .then(() => console.log('Mongoose connected'))
-    .catch(err => console.log(err))
-
-// Server listening on localhost:3001
-app.listen(3001, () => {
-    console.log('Server is now listening on PORT 3001.')
+// Connect to MongoDB, before running the Express server
+db.once('open', () => {
+    app.listen(PORT, () => {
+        console.log(`Server is now listening on PORT ${PORT}.`)
+    });
 });
