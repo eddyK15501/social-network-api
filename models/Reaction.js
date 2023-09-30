@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Schema to create Reaction model
 const reactionSchema = new mongoose.Schema(
   {
     username: {
