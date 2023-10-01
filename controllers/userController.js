@@ -8,13 +8,14 @@ module.exports = {
             res.status(200).json(users);
         } catch (err) {
             res.status(500).json(err);
+            console.log(err);
         }
     },
     // GET USER BY ID
     getSingleUser: async (req, res) => {
         try {
             const user = await User.findOne({ id: req.params.userId });
-
+ 
             if (!user) {
                 res.status(404).json({ message: "No User found with id." });
                 return;

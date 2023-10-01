@@ -39,8 +39,8 @@ const userSchema = new mongoose.Schema(
 );
 
 // Return length of user's friends array
-userSchema.virtual("friendCount").get(() => {
-  return userSchema.friends.length;
+userSchema.virtual("friendCount").get(function () {
+  return this.friends.length;
 });
 
 // Initialize User model

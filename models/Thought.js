@@ -36,11 +36,11 @@ const thoughtSchema = new mongoose.Schema(
 );
 
 // Retrieve thought's reactions array length
-thoughtSchema.virtual("reactionCount").get(() => {
-  return thoughtSchema.reactions.length;
+thoughtSchema.virtual("reactionCount").get(function () {
+  return this.reactions.length;
 });
 
 // Initialize Thought model
 const Thought = mongoose.model("thought", thoughtSchema);
 
-module.exports = thoughtSchema;
+module.exports = Thought;
