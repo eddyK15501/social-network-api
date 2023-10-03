@@ -22,7 +22,7 @@ module.exports = {
       if (!user) {
         return res.status(404).json({ message: "No User found with id." });
       }
-      
+
       res.status(200).json(user);
     } catch (err) {
       res.status(500).json(err);
@@ -61,20 +61,26 @@ module.exports = {
   },
   // DELETE USER BY ID
   deleteUser: async (req, res) => {
-    try {
-      const user = await User.findOneAndDelete({ _id: req.params.userId });
+  try {
+    const userId = req.params.userId;
 
-      if (!user) {
-        return res
-          .status(404)
-          .json({ message: "No user was found with this id." });
-      }
+    const user = await User.findOne({ _id: userId });
 
-      res.status(200).json({ message: "User successfully deleted!" });
-    } catch (err) {
-      res.status(500).json(err);
+    if (!user) {
+      return res.status(404).json({ message: "No user was found with this id." });
     }
-  },
+
+    // BONUS: REMOVE A USER'S ASSOCIATED THOUGHTS WHEN DELETING USER
+    await Thought.deleteMany({ _id: { $in: user.thoughts } });
+
+    await User.deleteOne({ _id: userId });
+
+    res.status(200).json({ message: "User successfully deleted!" });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+},
+
   // ADD NEW FRIEND TO USER'S FRIEND LIST
   addFriend: async (req, res) => {
     try {
