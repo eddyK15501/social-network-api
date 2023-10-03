@@ -17,6 +17,8 @@ module.exports = {
         _id: req.params.thoughtId,
       }).select("-__v");
 
+      console.log(thought);
+
       if (!thought) {
         return res
           .status(404)
@@ -31,19 +33,18 @@ module.exports = {
   // CREATE NEW THOUGHT
   createThought: async (req, res) => {
     try {
+      // Thoughts do not have to be unique, so $push instead of $addToSet
       const thought = await Thought.create(req.body);
       const user = await User.findOneAndUpdate(
         { _id: req.body.userId },
-        { $addToSet: { thoughts: thought._id } },
+        { $push: { thoughts: thought._id } },
         { new: true }
       );
 
       if (!user) {
-        return res
-          .status(404)
-          .json({
-            message: "Thought was created. But no User was found with that id.",
-          });
+        return res.status(404).json({
+          message: "Thought was created. But no User was found with that id.",
+        });
       }
 
       res.status(201).json(thought);
@@ -88,7 +89,20 @@ module.exports = {
     }
   },
   // ADD NEW REACTION TO THOUGHT'S REACTION ARRAY
-  addReaction: async (req, res) => {},
+  addReaction: async (req, res) => {
+    try {
+        // const thought = await Thought.findOneAndUpdate(
+        //     { }
+        // )
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
   // REMOVE REACTION BY ID
-  removeReaction: async (req, res) => {},
+  removeReaction: async (req, res) => {
+    try {
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 };

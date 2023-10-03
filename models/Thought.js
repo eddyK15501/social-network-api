@@ -1,6 +1,7 @@
-// Import Reaction Schema for embedding
+// Import Reaction Schema for embedding; Day.js for formatting date
 const mongoose = require("mongoose");
 const Reactions = require("./Reaction");
+const dayjs = require("dayjs");
 
 // Schema to create Thought model
 const thoughtSchema = new mongoose.Schema(
@@ -19,17 +20,15 @@ const thoughtSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (date) => {
-        const formatDate = new Date(date);
-        return `${
-          formatDate.getMonth() + 1
-        }/${formatDate.getDate()}/${formatDate.getFullYear()}`;
+      get: (timeStamp) => {
+        return dayjs(timeStamp).format("MMM D YYYY [at] h:mm A");
       },
     },
   },
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
     id: false,
   }
