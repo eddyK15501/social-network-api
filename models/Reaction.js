@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const dayjs = require('dayjs');
+const dayjs = require("dayjs");
 
 // Schema to create Reaction model
 const reactionSchema = new mongoose.Schema(
