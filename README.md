@@ -5,6 +5,7 @@
 Backend API for a social networking web application. Enable users to create a list of friends, as well as share and react to thoughts. No seed data is provided. MongoDB utilized as a database, Mongoose.js as the Object Document Model (ODM) library, and Express.js for server-side routing. API testing done with Postman.
 
 ## Video Demonstration of Application
+* [Click Here](https://github.com/eddyK15501/social-network-api/issues/2#issue-1929377450)
 
 ## Installation
 * Required: LTS or latest version of Node.js
