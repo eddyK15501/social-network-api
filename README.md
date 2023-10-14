@@ -33,4 +33,4 @@ npm run devStart
 * Written by Edward Kim.
 
 ## License
-This application is licensed under the [MIT License](./LICENSE).
+* #### This application is covered under the [MIT License](./LICENSE).
